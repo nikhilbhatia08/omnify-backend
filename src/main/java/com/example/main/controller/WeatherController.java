@@ -25,19 +25,23 @@ public class WeatherController {
     }
 
     @RequestMapping("/")
+    @CrossOrigin(origins = "https://omnify-lac.vercel.app")
     String home() {
         return "Hello World!";
     }
 
     @RequestMapping("forecast/{city}")
-    public List<Example> getWeatherForFive(
+    @CrossOrigin(origins = "https://omnify-lac.vercel.app")
+    public Example getWeatherForFive(
             @PathVariable String city) throws ParseException {
-        return this.weatherService.getWeatherForFive(city);
+        List<Example> res =  this.weatherService.getWeatherForFive(city);
+        return res.get(0);
     }
 
     @RequestMapping("weather/{city}")
+    @CrossOrigin(origins = "https://omnify-lac.vercel.app")
     public List<Example> getWeather(
-            @PathVariable String city) {
+            @PathVariable String city)throws ParseException {
         return this.weatherService.getWeather(city);
     }
 
